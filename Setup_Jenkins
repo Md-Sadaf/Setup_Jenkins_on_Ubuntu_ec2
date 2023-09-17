@@ -1,0 +1,29 @@
+How to setup Jenkins on Ubuntu ec2.
+First create an Ubuntu ec2 instance
+Then write the following command
+   1. sudo apt-get update
+   2. sudo apt install openjdk-8-jdk -y
+   3. curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+     /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+   4. echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+     https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+     /etc/apt/sources.list.d/jenkins.list > /dev/null
+   5. sudo apt-get update
+   6. sudo apt-get install fontconfig openjdk-11-jre
+   7. sudo apt-get install jenkins
+Now check the version of Jenkins
+   8. java -version
+   9. sudo systemctl start jenkins
+  10. sudo systemctl enable jenkins
+  11. sudo systemctl status jenkins
+
+Now setup the 8080 ip address for Jenkins
+Go on AWS ec2 instance and click on Security 
+Then click on Security groups link
+Then click on Edit inbound rules
+Then click on Add Rule
+Then leave everything as default except Port range
+Set Port range 8080(Because Jenkins run on port 8080)
+Then click on magnifying glass and select 0.0.0.0/0
+Then Save Rules
+Now copy your Public IPv4 address and paste it into any web browser and after it put port :8080 (11.1.11.111:8080)
